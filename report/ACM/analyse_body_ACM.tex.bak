@@ -1,0 +1,15 @@
+\section{Overview}
+In this paper, authors used CNN to feature extraction from image and FC neural network to determine the visual similarity. In the last years, CNN to extract visual information have been proposed. Furthermore, Gordo et al. (2017) used a FC layer that replace the PCA projection. However, visual similarity is commonly measured by computing a standard metric between vectors that are the output of the CNN. The main aim of the article is to use a neural network to define visual similarities between images and other researchers have not looked at, to the best of my knowledge. This approach will show better results if the visual data presents any nonlinear interdependency. On the other hand, as already observed by the authors in appendix A, a subset of samples from the target dataset is required during training to learn a meaningful similarity function. So this article is quite interesting and relevant. 
+
+
+\section{evaluation of results}
+Naturally, feed-forwarding the two samples through the trained neural network is far more expensive that computing the cosine similarity  or Euclidean distance, hence this approach must outperforms methods based on standard metric computations. Otherwise there is no benefit to using a neural network. But the architecture of the CNN descriptor( authors could use ResNet instead of a VGG16 network for image representation)  and standard image retrieval techniques, such as query expansion or image
+re-ranking( authors did not use it), also have an impact on the result. Thus, the goal of this paper is performed, because the results outperformed  results of other works with similar conditions.\\
+
+\section{labeling datasets}
+I think that using cosine similarity to set labels(Eq. 5 in the article) is not a good idea. If we assume that the cosine similarity may give incorrect results, we should not use this metric to labeling dataset. Futhermore, this approach forces authors to use three stages of training. Perhaps even a naive classification would be better, because authors used Landmarks Gordo et al. (2017), where all images inside a class  are visually related.
+Note that Gordo et al. (2017) obtained a set of pairwise scores between all image pairs and we can use this score for training procedure. Moreover, it can solve problem of approximating the K-nearest neighbors. We can construct a similar graph on a release set of images and compare query image with only a few nodes of each graph. As a result, we show a client all nodes of a graph, whose nodes turned out to be most similar to the query image. So I think that the naive classification or use scores for labeling dataset would be better than approximate cosine similarity with margin parameter.
+
+\section{Conclusion}
+In total, on the one hand authors presented a method that improved current results in image retrieval, but on the other hand this approach is expensive and some images from the target dataset should be used for training. The main problem to be solved is the labeling dataset in my opinion.
+дл
